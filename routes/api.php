@@ -41,3 +41,7 @@ Route::get('/user_favorite_radio', 'UserFavoriteRadioController@userFavoriteRadi
 Route::post('/user_favorite_radio', 'UserFavoriteRadioController@create')->name('user_favorite_radio_create');
 // お気に入りのラジオ削除
 Route::post('/user_favorite_radio/delete', 'UserFavoriteRadioController@delete')->name('user_favorite_radio_delete');
+
+// NBA
+// 指定されたスケジュールすべて取得
+Route::get('/schedule', 'ScheduleController@schedule')->name('schedule');
