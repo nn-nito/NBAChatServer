@@ -45,3 +45,5 @@ Route::post('/user_favorite_radio/delete', 'UserFavoriteRadioController@delete')
 // NBA
 // 指定されたスケジュールすべて取得
 Route::get('/schedule', 'ScheduleController@schedule')->name('schedule');
+// 指定された日時で試合中のスケジュールを取得
+Route::get('/during_schedule', 'ScheduleController@duringSchedule')->name('during_schedule');

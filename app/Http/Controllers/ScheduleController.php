@@ -32,4 +32,30 @@ class ScheduleController extends Controller
 
 		return response()->json($responses);
 	}
+
+
+
+	/**
+	 * 指定された日時で試合中のスケジュールを取得
+	 *
+	 * @param Request $request
+	 * @return JsonResponse
+	 * @throws \Exception
+	 */
+	public function duringSchedule(Request $request): JsonResponse
+	{
+		$datetime_string = $request->get('datetime');
+		if (is_null($datetime_string)) {
+			return  response()->json([]);
+		}
+
+		$datetime = (new \DateTime($datetime_string))->format('Y-m-d H:i:s');
+		// 指定された日時で試合中の全ての試合を取得
+		$responses['game_schedules'] = (new GameScheduleHandler())->fetchSchedulesByBetweenDateAndTime($datetime);
+
+		// 指定された日時の試合をするチーム取得 リザルトもjoinしてもってくる
+		$responses['teams_results'] = (new TeamHandler())->fetchAllTeamsJoinGameResult();
+
+		return response()->json($responses);
+	}
 }
